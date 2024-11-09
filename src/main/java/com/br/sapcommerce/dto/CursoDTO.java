@@ -1,16 +1,21 @@
 package com.br.sapcommerce.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 import java.util.Date;
 
 public class CursoDTO {
     private Long id;
+
+    @NotBlank(message = "O Nome do curso é obrigatorio.")
+    @Size(min = 5, max = 35, message = "O nome do curso deve conter entre 5 e 35 caracteres.")
     private String nome;
+
+    @NotBlank(message = "A descricao do curso é obrigatoria.")
+    @Size(min = 20, max = 200, message = "A descricao do curso deve conter entre 20 e 200 caracteres.")
     private String descricao;
     private Date dataCriacao;
-
-    public CursoDTO() {
-
-    }
 
     public CursoDTO(Long id, String nome, String descricao, Date dataCriacao) {
         this.id = id;

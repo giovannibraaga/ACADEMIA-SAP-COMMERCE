@@ -8,9 +8,6 @@ public class InscricaoDTO {
     private Long idCurso;
     private Date dataInscricao;
 
-    public InscricaoDTO() {
-    }
-
     public InscricaoDTO(Long id, Long idAluno, Long idCurso, Date dataInscricao) {
         this.id = id;
         this.idAluno = idAluno;
