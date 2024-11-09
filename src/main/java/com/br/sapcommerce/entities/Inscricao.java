@@ -1,4 +1,4 @@
-package com.br.sapcommerce.Entities;
+package com.br.sapcommerce.entities;
 
 import jakarta.persistence.*;
 
