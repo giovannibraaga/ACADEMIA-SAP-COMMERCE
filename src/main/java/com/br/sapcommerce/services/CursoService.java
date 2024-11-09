@@ -8,6 +8,8 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
+
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,7 +21,7 @@ public class CursoService {
     private CursoRepository cursoRepository;
 
     @Transactional
-    public CursoDTO createCurso(@Valid CursoDTO cursoDTO) {
+    public CursoDTO createCurso(@Valid @RequestBody CursoDTO cursoDTO) {
         Curso curso = InscricaoPopulator.toEntity(cursoDTO);
         curso.setNome(cursoDTO.getNome());
         curso.setDescricao(cursoDTO.getDescricao());
@@ -39,7 +41,7 @@ public class CursoService {
     }
 
     @Transactional
-    public CursoDTO updateCurso(Long id, @Valid CursoDTO cursoDTO) {
+    public CursoDTO updateCurso(Long id, @Valid @RequestBody CursoDTO cursoDTO) {
         Curso cursoExistente = cursoRepository.findById(id).orElseThrow(() -> new RuntimeException("Curso não encontrado na base de dados."));
         cursoExistente.setNome(cursoDTO.getNome());
         cursoExistente.setDescricao(cursoDTO.getDescricao());

@@ -32,10 +32,8 @@ public class InscricaoService {
 
     @Transactional
     public void assignAlunoToCurso(InscricaoDTO inscricaoDTO) {
-        Aluno aluno = alunoRepository.findById(inscricaoDTO.getIdAluno())
-                .orElseThrow(() -> new RuntimeException("Aluno não encontrado na base de dados."));
-        Curso curso = cursoRepository.findById(inscricaoDTO.getIdCurso())
-                .orElseThrow(() -> new RuntimeException("Curso não encontrado na base de dados."));
+        Aluno aluno = alunoRepository.findById(inscricaoDTO.getIdAluno()).orElseThrow(() -> new RuntimeException("Aluno não encontrado na base de dados."));
+        Curso curso = cursoRepository.findById(inscricaoDTO.getIdCurso()).orElseThrow(() -> new RuntimeException("Curso não encontrado na base de dados."));
         Inscricao inscricao = new Inscricao();
         inscricao.setAluno(aluno);
         inscricao.setCurso(curso);
@@ -43,13 +41,13 @@ public class InscricaoService {
         inscricaoRepository.save(inscricao);
     }
 
-    public List<CursoDTO> findCursosByAlunoId(Long alunoId) {
-        List<Curso> cursos = inscricaoRepository.findCursosByAlunoId(alunoId);
+    public List<CursoDTO> findCursosByAlunoId(Long idAluno) {
+        List<Curso> cursos = inscricaoRepository.findCursosByAlunoId(idAluno);
         return cursos.stream().map(InscricaoPopulator::toModel).collect(Collectors.toList());
     }
 
-    public List<AlunoDTO> getAlunosByCursoId(Long cursoId) {
-        List<Aluno> alunos = inscricaoRepository.findAlunosByCursoId(cursoId);
+    public List<AlunoDTO> getAlunosByCursoId(Long idCurso) {
+        List<Aluno> alunos = inscricaoRepository.findAlunosByCursoId(idCurso);
         return alunos.stream().map(InscricaoPopulator::toModel).collect(Collectors.toList());
     }
 }

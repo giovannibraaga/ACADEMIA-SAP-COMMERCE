@@ -26,16 +26,8 @@ public class Curso {
     @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL)
     private List<Inscricao> inscricoes = new ArrayList<>();
 
-    @Deprecated
     public Curso() {
 
-    }
-
-    public Curso(String nome, String descricao, Date dataCriacao, List<Inscricao> inscricoes) {
-        this.nome = nome;
-        this.descricao = descricao;
-        this.dataCriacao = dataCriacao;
-        this.inscricoes = inscricoes;
     }
 
     public Long getId() {
