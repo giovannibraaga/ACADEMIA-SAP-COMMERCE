@@ -1,7 +1,6 @@
 package com.br.sapcommerce.entities;
 
 import jakarta.persistence.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,10 +14,10 @@ public class Curso {
     @Column(name = "id", unique = true)
     private Long id;
 
-    @Column(name = "nome")
+    @Column(name = "nome", nullable = false)
     private String nome;
 
-    @Column(name = "descricao")
+    @Column(name = "descricao", nullable = false)
     private String descricao;
 
     @Column(name = "data-criacao")

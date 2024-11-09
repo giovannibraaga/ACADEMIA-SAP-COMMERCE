@@ -5,33 +5,26 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "inscricao")
+@Table(name = "inscricoes")
 public class Inscricao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "curso_id", nullable = false)
     private Curso curso;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "aluno_id", nullable = false)
     private Aluno aluno;
 
     @Column(name = "data_inscricao")
     private Date dataInscricao;
 
-    @Deprecated
     public Inscricao() {
 
-    }
-
-    public Inscricao(Curso curso, Aluno aluno, Date dataInscricao) {
-        this.curso = curso;
-        this.aluno = aluno;
-        this.dataInscricao = dataInscricao;
     }
 
     public Long getId() {
@@ -42,7 +35,7 @@ public class Inscricao {
         return curso;
     }
 
-    public void setCurso(Curso curso_id) {
+    public void setCurso(Curso curso) {
         this.curso = curso;
     }
 
@@ -50,7 +43,7 @@ public class Inscricao {
         return aluno;
     }
 
-    public void setAluno(Aluno aluno_id) {
+    public void setAluno(Aluno aluno) {
         this.aluno = aluno;
     }
 

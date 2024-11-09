@@ -8,7 +8,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import org.springframework.web.bind.annotation.RequestBody;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,7 +20,7 @@ public class AlunoService {
     private AlunoRepository alunoRepository;
 
     @Transactional
-    public AlunoDTO createAluno(@Valid AlunoDTO alunoDTO) {
+    public AlunoDTO createAluno(@Valid @RequestBody AlunoDTO alunoDTO) {
         Aluno aluno = InscricaoPopulator.toEntity(alunoDTO);
         aluno.setDataCadastro(new Date());
         aluno = alunoRepository.save(aluno);
@@ -38,7 +38,7 @@ public class AlunoService {
     }
 
     @Transactional
-    public AlunoDTO updateAluno(Long id, @Valid AlunoDTO alunoDTO) {
+    public AlunoDTO updateAluno(Long id, @Valid @RequestBody AlunoDTO alunoDTO) {
         Aluno alunoExistente = alunoRepository.findById(id).orElseThrow(() -> new RuntimeException(("Aluno não encontrado na base de dados")));
         alunoExistente.setNome(alunoDTO.getNome());
         alunoExistente.setEmail(alunoDTO.getEmail());

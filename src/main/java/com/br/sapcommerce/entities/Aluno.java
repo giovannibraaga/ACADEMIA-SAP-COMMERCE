@@ -1,7 +1,6 @@
 package com.br.sapcommerce.entities;
 
 import jakarta.persistence.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,10 +13,10 @@ public class Aluno {
     @Column(name = "id", unique = true)
     private Long id;
 
-    @Column(name = "nome")
+    @Column(name = "nome", nullable = false)
     private String nome;
 
-    @Column(name = "email", unique = true)
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
 
     @Column(name = "data-cadastro")
